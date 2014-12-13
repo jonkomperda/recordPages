@@ -54,44 +54,16 @@
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           
-         <h1 class="page-header">NOFX 7"</h1>
-         <script language="JavaScript">
-           // Create a connection to the file.
-           var Connect = new XMLHttpRequest();
- 
-           // Define which file to open and
-           // send the request.
-           Connect.open("GET", "./NOFX.xml", false);
-           Connect.setRequestHeader("Content-Type", "text/xml");
-           Connect.send(null);
- 
-           // Place the response in an XML document.
-           var TheDocument = Connect.responseXML;
- 
-           // Place the root node in an element.
-           var Records = TheDocument.childNodes[0];
- 
-           // Retrieve each customer in turn.
-           for (var i = 0; i < Records.children.length; i++)
-           {
-            var record = Records.children[i];
-  
-            // Access each of the data values.
-            var Album = record.getElementsByTagName("Album");
-            var Color = record.getElementsByTagName("Color");
-            var Press = record.getElementsByTagName("Press");
-            var Rarity = record.getElementsByTagName("Rarity");
-  
-            // Write the data to the page.
-            document.write("<h3 class="sub-header">");
-            document.write(Name[0].textContent.toString());
-            document.write("</h3><div class="row placeholders"><div class="col-xs-6 col-sm-3 record">");
-            document.write(Age[0].textContent.toString());
-            document.write("</td><td>");
-            document.write(Color[0].textContent.toString());
-            document.write("</td></tr>");
-           }
-         </script>
+          <?php
+            $file = fopen("nofx12", "r");
+            while(!feof($file)){
+                $line = fgets($file);
+                # do same stuff with the $line
+            }
+            fclose($file);
+          ?>
+          
+          <h1 class="page-header">NOFX 12"</h1>
           
           <!--Begin a record-->
           <h3 class="sub-header">The Album</h3>
