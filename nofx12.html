@@ -35,9 +35,16 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="nofx7.html">7" Records</a></li>
-            <li><a href="#">10" Records</a></li>
-            <li><a href="nofx12.html">12" Records</a></li>
+              <li><a href="#">Anti-Flag</a></li>
+              <li><a href="#">Frank Turner</a></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">NOFX<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="nofx7.html">7"</a></li>
+                          <li><a href="#">10"</a></li>
+                          <li><a href="nofx12.html">12"</a></li>
+                        </ul>
+                      </li>
           </ul>
         </div>
       </div>
@@ -47,68 +54,117 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li><a href="#">Anti-Flag </a></li>
+              
+              <script>
+               if (window.XMLHttpRequest)
+                 {// code for IE7+, Firefox, Chrome, Opera, Safari
+                 xmlhttp=new XMLHttpRequest();
+                 }
+               else
+                 {// code for IE6, IE5
+                 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                 }
+               xmlhttp.open("GET","./NOFX12.xml",false);
+               xmlhttp.send();
+               xmlDoc=xmlhttp.responseXML;
+
+               var Albumold = "none"
+                  // Retrieve each customer in turn.
+                  //document.write(xmlDoc.documentElement.childNodes.length)
+
+                  for (var i = 0; i < xmlDoc.documentElement.childNodes.length; i++)
+                  {
+
+                   // Access each of the data values.
+                   var Album = xmlDoc.getElementsByTagName("Album")[i].childNodes[0].nodeValue;
+
+                   if (Album != Albumold){
+                      document.write("<li><a href=\"#");
+                      document.write(Album.replace(/\s+/g, ''));
+                      document.write("\">");
+                      document.write(Album);
+                      document.write("</a></li>");
+                   }
+
+                   var Albumold = Album;
+                  }
+
+               //console.log(document.getElementById("Al"));
+               //document.write(xmlDoc.getElementsByTagName("Color")[1].childNodes[0].nodeValue);
+
+               </script>
+              
+              
+            <!--<li><a href="#">Anti-Flag </a></li>
             <li><a href="#">Frank Turner</a></li>
             <li class="active"><a href="#">NOFX <span class="sr-only">(current)</span></a></li>
+            -->
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           
          <h1 class="page-header">NOFX 12"</h1>
-         <script language="JavaScript">
-           // Create a connection to the file.
-           var Connect = new XMLHttpRequest();
- 
-           // Define which file to open and
-           // send the request.
-           Connect.open("GET", "./NOFX12.xml", false);
-           Connect.setRequestHeader("Content-Type", "text/xml");
-           Connect.send(null);
- 
-           // Place the response in an XML document.
-           var TheDocument = Connect.responseXML;
- 
-           // Place the root node in an element.
-           var Records = TheDocument.childNodes[0];
-           var Albumold = "none"
-           // Retrieve each customer in turn.
-           for (var i = 0; i < Records.children.length; i++)
-           {
-            var record = Records.children[i];
-            
-            // Access each of the data values.
-            var Album = record.getElementsByTagName("Album");
-            var Color = record.getElementsByTagName("Color");
-            var Press = record.getElementsByTagName("Press");
-            var Rarity = record.getElementsByTagName("Rarity");
-            var Aside = record.getElementsByTagName("A-Side");
-            
-            
-  
-            // Write the data to the page.
-            if ((Album[0].textContent != Albumold[0].textContent)&&(i!=0)){
-               document.write("</div>");
-            }
-            
-            if (Album[0].textContent != Albumold[0].textContent){
-               document.write("<h3 class=\"sub-header\">");
-               document.write(Album[0].textContent.toString());
-               document.write("</h3><div class=\"row placeholders\">");
-            }
-            document.write("<div class=\"col-xs-6 col-sm-3 record\"><img src=\"");
-            document.write(Aside[0].textContent.toString());
-            document.write("\" class=\"img-responsive\" alt=\"Generic record thumbnail\"><h4>");
-            document.write(Press[0].textContent.toString());
-            document.write("</h4><span class=\"text-muted\">");
-            document.write(Color[0].textContent.toString());
-            document.write("</span></div>");
-            
-            
-            var Albumold = Album;
-            
+         
+         <script>
+         if (window.XMLHttpRequest)
+           {// code for IE7+, Firefox, Chrome, Opera, Safari
+           xmlhttp=new XMLHttpRequest();
            }
+         else
+           {// code for IE6, IE5
+           xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+           }
+         xmlhttp.open("GET","./NOFX12.xml",false);
+         xmlhttp.send();
+         xmlDoc=xmlhttp.responseXML;
+         
+         var Albumold = "none"
+            // Retrieve each customer in turn.
+            //document.write(xmlDoc.documentElement.childNodes.length)
+            
+            for (var i = 0; i < xmlDoc.documentElement.childNodes.length; i++)
+            {
+
+             // Access each of the data values.
+             var Album = xmlDoc.getElementsByTagName("Album")[i].childNodes[0].nodeValue;
+             var Color = xmlDoc.getElementsByTagName("Color")[i].childNodes[0].nodeValue;
+             var Press = xmlDoc.getElementsByTagName("Press")[i].childNodes[0].nodeValue;
+             var Rarity = xmlDoc.getElementsByTagName("Rarity")[i].childNodes[0].nodeValue;
+             var Aside = xmlDoc.getElementsByTagName("A-Side")[i].childNodes[0].nodeValue;
+
+
+
+             // Write the data to the page.
+             if ((Album != Albumold)&&(i!=0)){
+                document.write("</div>");
+             }
+
+             if (Album != Albumold){
+                document.write("<a name=\"");
+                document.write(Album.replace(/\s+/g, ''));
+                document.write("\"></a>");
+                document.write("<h3 class=\"sub-header\">");
+                document.write(Album);
+                document.write("</h3><div class=\"row placeholders\">");
+             }
+             document.write("<div class=\"col-xs-6 col-sm-3 record\"><img src=\"");
+             document.write(Aside);
+             document.write("\" class=\"img-responsive\" alt=\"Generic record thumbnail\"><h4>");
+             document.write(Press);
+             document.write("</h4><span class=\"text-muted\">");
+             document.write(Color);
+             document.write("</span><br>");
+             document.write("<span class=\"text-muted\">");
+             document.write(Rarity);
+             document.write("</span></div>");
+             
+             var Albumold = Album;
+            }
+         
+         //console.log(document.getElementById("Al"));
+         //document.write(xmlDoc.getElementsByTagName("Color")[1].childNodes[0].nodeValue);
+         
          </script>
-          
           
         </div>
       </div>
